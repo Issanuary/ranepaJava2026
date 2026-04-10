@@ -17,28 +17,28 @@ public class HRMService {
         this.repository = repository;
     }
 
-    // Добавление нового сотрудника
+    // добавить сотр
     public Employee addEmployee(String name, String position, double salary, LocalDate hireDate) {
         Employee employee = new Employee(name, position, salary, hireDate);
         return repository.save(employee);
     }
 
-    // Получение всех сотрудников
+    // лист всех сотрудников
     public List<Employee> getAllEmployees() {
         return repository.findAll();
     }
 
-    // Поиск по ID
+    // найти по ID
     public Optional<Employee> findEmployeeById(Long id) {
         return repository.findById(id);
     }
 
-    // Удаление сотрудника
+    // удалить
     public boolean deleteEmployee(Long id) {
         return repository.delete(id);
     }
 
-    // Расчет средней зарплаты
+    // расчет средней ЗП
     public BigDecimal calculateAverageSalary() {
         List<Employee> employees = repository.findAll();
 
@@ -53,7 +53,7 @@ public class HRMService {
         return sum.divide(BigDecimal.valueOf(employees.size()), 2, RoundingMode.HALF_UP);
     }
 
-    // Поиск самого высокооплачиваемого сотрудника
+    // поиск высокооплачиваемого
     public Optional<Employee> findTopPaidEmployee() {
         List<Employee> employees = repository.findAll();
 
@@ -61,22 +61,22 @@ public class HRMService {
                 .max((e1, e2) -> e1.getSalary().compareTo(e2.getSalary()));
     }
 
-    // Фильтрация по должности
+    // фильтр по должности
     public List<Employee> filterByPosition(String position) {
         return repository.findAll().stream()
                 .filter(e -> e.getPosition().equalsIgnoreCase(position))
                 .collect(Collectors.toList());
     }
 
-    // Получение статистики
+    // получение статистики
     public String getStatistics() {
         StringBuilder stats = new StringBuilder();
         stats.append("=== Company Statistics ===\n");
 
-        // Средняя зарплата
+        // средняя ЗП
         stats.append("Average salary: ").append(calculateAverageSalary()).append("\n");
 
-        // Самый высокооплачиваемый сотрудник
+        // самый высокооплачиваемый сотрудник
         Optional<Employee> topPaid = findTopPaidEmployee();
         if (topPaid.isPresent()) {
             Employee emp = topPaid.get();
@@ -87,7 +87,7 @@ public class HRMService {
             stats.append("No employees found\n");
         }
 
-        // Количество сотрудников
+        // кол-во сотр
         stats.append("Total employees: ").append(repository.findAll().size()).append("\n");
 
         return stats.toString();

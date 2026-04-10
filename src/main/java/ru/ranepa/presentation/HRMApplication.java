@@ -15,13 +15,13 @@ public class HRMApplication {
     private final HRMService service;
     private final Scanner scanner;
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+    //констр
     public HRMApplication() {
         EmployeeRepository repository = new EmployeeRepository();
         this.service = new HRMService(repository);
         this.scanner = new Scanner(System.in);
     }
-
+    //запуск меню
     public void start() {
         while (true) {
             printMenu();

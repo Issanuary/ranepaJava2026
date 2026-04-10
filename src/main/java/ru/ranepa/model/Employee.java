@@ -2,7 +2,7 @@ package ru.ranepa.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+//поля
 public class Employee {
     private long id;
     private  String name;
@@ -10,16 +10,15 @@ public class Employee {
     private BigDecimal salary;
     private final LocalDate hireDate;
 
-    //construct
+    //construct(созд.сотруд)
     public Employee(String name, String position, double salary, LocalDate hireDate) {
-        id++;
         this.name = name;
         this.position = position;
         this.salary = BigDecimal.valueOf(salary);
         this.hireDate = hireDate;
     }
 
-    //getter
+    //getter(чтение д)
     public long getId() {
         return id;
     }
@@ -39,7 +38,7 @@ public class Employee {
     public LocalDate getHireDate() {
         return hireDate;
     }
-//setter
+//setter(изменение д)
     public void setId(long id) {
         this.id = id;
     }
